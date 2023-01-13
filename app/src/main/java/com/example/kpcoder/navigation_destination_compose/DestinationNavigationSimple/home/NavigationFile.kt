@@ -1,4 +1,4 @@
-package com.example.kpcoder.navigation_destination_compose.DestinationNavigationSimple
+package com.example.kpcoder.navigation_destination_compose.DestinationNavigationSimple.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -8,6 +8,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.kpcoder.navigation_destination_compose.DestinationNavigationSimple.HomeNavGraph
+import com.example.kpcoder.navigation_destination_compose.DestinationNavigationSimple.ProfileScreenViewModel
 import com.example.kpcoder.navigation_destination_compose.DestinationNavigationSimple.destinations.AccountScreenDestination
 import com.example.kpcoder.navigation_destination_compose.DestinationNavigationSimple.destinations.HomeScreenDestination
 import com.example.kpcoder.navigation_destination_compose.DestinationNavigationSimple.destinations.ProfileScreenDestination
@@ -15,14 +17,15 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
-@Destination(start = true)
+@HomeNavGraph(start = true)
+@Destination
 @Composable
-fun HomeScreen(navigator: DestinationsNavigator) {
+fun HomeScreen(navigator: DestinationsNavigator, value : String = "") {
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column {
 
-            Text(text = "Home Screen")
+            Text(text = "Home Screen ${value}")
             Spacer(modifier = Modifier.height(14.dp))
             Button(onClick = {
                 navigator.navigate(
@@ -40,6 +43,7 @@ fun HomeScreen(navigator: DestinationsNavigator) {
     
 }
 
+@HomeNavGraph
 @Destination
 @Composable
 fun ProfileScreen(
@@ -69,6 +73,7 @@ fun ProfileScreen(
     
 }
 
+@HomeNavGraph
 @Destination
 @Composable
 fun AccountScreen(navigator: DestinationsNavigator) {
